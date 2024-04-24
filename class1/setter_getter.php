@@ -2,7 +2,7 @@
 
 class User 
 {
-    private $email;
+    protected $email;
 
     public function setMail($anyMail)
     {
