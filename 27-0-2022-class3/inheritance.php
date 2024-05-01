@@ -10,6 +10,8 @@
 // 	public function paymentCancel();
  
 class PaymentGateway{
+    
+    public $amount;
 
     public function paymentRequest(){}
     public function setPassword(){}
@@ -17,17 +19,23 @@ class PaymentGateway{
     public function paymentAmountCheck(){}
     public function paymentSuccess(){}
     public function paymentCancel(){}
-    protected function paymentFail(){
-        echo "Failed";
+
+    protected function paymentFail($amount){
+      return  $this->amount =$amount; 
     }
 
 }
 
 class DuthcBangla extends PaymentGateway
 {
+    public $ID = 250;
+    public function paymentFail($amount){
+       echo parent::paymentFail($amount);
+    }
 
-    public function failed(){
-       echo parent::paymentFail();
+    public function setValue()
+    {
+        echo $this->ID;
     }
     
 }
@@ -40,8 +48,9 @@ class EBL extends DuthcBangla
 }
 
 $booth = NEW DuthcBangla();
+$booth->paymentFail(500);
+$booth->setValue();
 
 
-
-$ebl = NEW EBL;
-$ebl->paymentAmountCheck();
+// $ebl = NEW EBL;
+// $ebl->paymentAmountCheck();
